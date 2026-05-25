@@ -1,41 +1,52 @@
-# ProxIA — Site Web Landing Page
+# KairosIA — Site Web Landing Page
 
-Landing page pour **ProxIA**, cabinet de conseil en implémentation IA pour TPE/PME françaises.
+Landing page pour **.kairos**, cabinet de conseil en transformation IA pour TPE/PME françaises.
 
-> Proximité + IA → ROI concret, approche humaine et pédagogique.
+> Du bon moment à la bonne action — accompagnement opérationnel, technique et pédagogique de la découverte au déploiement concret.
 
 ## Stack
 
 - HTML/CSS/JS vanilla — fichier unique `index.html`
-- Design system dark : `#080809` background · `#f97316` orange accent · Inter (Google Fonts)
-- SEO : schema.org JSON-LD (Organization, FAQPage, Service, AggregateRating) · Open Graph · Twitter Card
-- Responsive : hamburger menu mobile · 5 breakpoints (1024 / 900 / 768 / 640 / 380 px)
+- Design system light : `#ffffff` / `#f5f5f3` background · `#cc2c22` rouge accent · Inter 800 (titres) + JetBrains Mono (labels)
+- SEO : schema.org JSON-LD (Organization, LocalBusiness, ProfessionalService) · Open Graph · Twitter Card · `llms.txt`
+- Responsive : hamburger menu mobile full-screen · breakpoints 900 px (tablette) / 640 px (mobile)
+- Animations : `heroIn` page-load stagger · IntersectionObserver scroll · `prefers-reduced-motion`
 
 ## Sections
 
-1. Navbar sticky
-2. Hero — orbe CSS 3D, badges flottants (47+ PME · 3.2× ROI)
-3. Stats strip (4 métriques)
-4. Pourquoi ProxIA — 6 cards + pain points
-5. Nos Services — diagnostic offert (featured) + 3 cards
-6. Notre Méthode — 4 étapes
-7. Calculateur ROI — sliders interactifs TPE/PME
-8. Témoignages — 3 cards + strip chiffrée
-9. FAQ — 6 questions accordion
-10. CTA Final
-11. Footer
+1. Navbar sticky (logo Inter 800, drawer mobile 100vh)
+2. Hero — 100vh, centrage vertical, quote « Posture » ancrée en bas
+3. Cible — pour qui / pour qui pas
+4. Méthode — 4 étapes (Comprendre · Prioriser · Expérimenter · Ancrer)
+5. Offres — 3 cartes mod box avec tarifs *à partir de* + note Gouvernance des données
+6. Simulateur ROI — 2 panneaux (structure + sliders | métriques dark)
+7. FAQ — 6 questions, accordéon natif `<details>`
+8. Limites — ce que .kairos ne fait pas
+9. Contact — fond gris-100, CTA échange gratuit
+10. Footer
 
 ## Déploiement
 
-| Environnement | URL | Statut |
+| Branche | URL | Statut |
 |---|---|---|
-| GitHub Pages (preview) | https://anthonymlns.github.io/SiteWebProxIA/ | ✅ En ligne |
-| Vercel (production) | https://proxia.fr | ⏳ À venir |
+| `v2-new-brief` (preview) | https://anthonymlns.github.io/KairosIA/ | ✅ En ligne |
+| `master` (production) | — | ⏳ Après validation |
 
-## Roadmap
+## Fichiers notables
 
-Voir [Issues](../../issues) pour le suivi des releases.
+| Fichier | Rôle |
+|---|---|
+| `index.html` | Site complet — HTML, CSS, JS en fichier unique |
+| `llms.txt` | Indexation LLM (standard llmstxt.org) |
+| `references/` | Brief v2, template design, maquette simulateur |
 
 ## Lancer en local
 
-Ouvrir `index.html` dans un navigateur — aucune dépendance, aucun build requis.
+```bash
+# Aucune dépendance, aucun build requis
+open index.html
+```
+
+## Suivi
+
+Voir [Issue #2](../../issues/2) pour le détail complet des modifications de la v2 et la checklist de mise en production.
