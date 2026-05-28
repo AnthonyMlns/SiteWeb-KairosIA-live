@@ -1,4 +1,4 @@
-# KairosIA — Site Web Landing Page
+# kAIros. — Site Web Landing Page
 
 ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-deployed-brightgreen)
 ![Last Commit](https://img.shields.io/github/last-commit/AnthonyMlns/SiteWebKairosIA)
@@ -9,11 +9,12 @@ Landing page pour **kAIros.**, cabinet de conseil en transformation IA pour TPE/
 
 ## Description
 
-Site vitrine statique (HTML/CSS/JS vanilla) avec quatre pages :
+Site vitrine statique (HTML/CSS/JS vanilla) avec cinq pages :
 - **`index.html`** — page d'accueil (hero, cible, méthode, FAQ, contact)
 - **`simulateur.html`** — simulateur de ROI IA (2 panneaux, sliders, métriques)
 - **`cas-dusage.html`** — cas d'usage concrets (3 colonnes : gagner du temps, amplifier l'activité, construire sur mesure)
 - **`about.html`** — À propos (étymologie, vision, posture, engagement, CTA)
+- **`404.html`** — page d'erreur personnalisée (404)
 
 ## Stack
 
@@ -30,8 +31,6 @@ Site vitrine statique (HTML/CSS/JS vanilla) avec quatre pages :
 
 ## Installation
 
-## Installation
-
 ```bash
 git clone https://github.com/AnthonyMlns/SiteWebKairosIA.git
 cd SiteWebKairosIA
@@ -42,10 +41,26 @@ cd SiteWebKairosIA
 Ouvrez `index.html` dans votre navigateur :
 
 ```bash
+# macOS
 open index.html
+
+# Windows
+start index.html
 ```
 
 ## Structure du projet
+
+```
+├── index.html          # Accueil — hero, cible, méthode, FAQ, contact
+├── about.html          # À propos — étymologie, vision, posture, équipe
+├── cas-dusage.html     # Cas d'usage concrets (3 colonnes)
+├── simulateur.html     # Simulateur de ROI IA
+├── 404.html            # Page d'erreur personnalisée
+├── design-system.md    # Tokens et principes du design system
+├── llms.txt            # Indexation LLM
+├── LICENSE
+└── README.md
+```
 
 ## Roadmap
 
