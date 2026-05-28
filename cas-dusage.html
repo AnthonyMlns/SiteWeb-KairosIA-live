@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <title>kAIros. · Cas d'usage | Conseil IA pour TPE/PME</title>
+  <meta name="description" content="Ce qu'on peut faire concrètement avec l'IA : gagner du temps, amplifier l'activité, construire sur mesure. Cas d'usage concrets pour TPE/PME.">
+  <link rel="canonical" href="https://www.kairos.fr/cas-dusage" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       RESET & TOKENS
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:      #cc2c22;
+      --black:    #0c0c0c;
+      --gray-900: #1a1a1a;
+      --gray-700: #3d3d3d;
+      --gray-500: #6b6b6b;
+      --gray-200: #e2e2e0;
+      --gray-100: #f5f5f3;
+      --white:    #ffffff;
+
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+      --border:    1px solid var(--gray-200);
+
+      --max-w: 1120px;
+      --pad-x: 48px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--white);
+      color: var(--black);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ============================================================
+       UTILITAIRES
+    ============================================================ */
+    .label {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      display: inline-block;
+    }
+
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+    }
+
+    .section {
+      padding: 96px 0;
+      border-top: var(--border);
+    }
+
+    /* ============================================================
+       BOUTONS
+    ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: 13.5px;
+      font-weight: 500;
+      padding: 11px 22px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .btn:hover { background: var(--gray-900); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--black);
+      border: var(--border);
+    }
+    .btn-outline:hover { background: var(--gray-100); }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: var(--border);
+      transition: box-shadow 0.2s;
+    }
+    nav.scrolled { box-shadow: 0 1px 16px rgba(0,0,0,0.07); }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 58px;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+    }
+
+    .nav-logo {
+      font-family: var(--font-sans);
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--black);
+      text-decoration: none;
+      letter-spacing: -0.045em;
+      flex-shrink: 0;
+    }
+    .nav-logo .dot { color: var(--red); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13.5px;
+      color: var(--gray-500);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--black); }
+    .nav-links a.active { color: var(--black); font-weight: 500; }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      height: 1.5px;
+      background: var(--black);
+      border-radius: 1px;
+      transition: transform 0.25s, opacity 0.25s;
+      transform-origin: center;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .nav-drawer {
+      display: none;
+      position: fixed;
+      top: 58px;
+      left: 0; right: 0;
+      bottom: 0;
+      height: calc(100vh - 58px);
+      background: var(--white);
+      border-top: var(--border);
+      padding: 32px var(--pad-x) 48px;
+      z-index: 99;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+    .nav-drawer.open {
+      display: flex;
+      animation: drawerIn 0.22s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    .nav-drawer a:not(.btn) {
+      display: flex;
+      align-items: center;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--black);
+      text-decoration: none;
+      padding: 18px 0;
+      border-bottom: var(--border);
+      transition: color 0.15s;
+    }
+    .nav-drawer a:not(.btn):hover { color: var(--red); }
+    .nav-drawer a:not(.btn):last-of-type { border-bottom: none; }
+    .nav-drawer .btn {
+      margin-top: auto;
+      justify-content: center;
+      width: 100%;
+    }
+
+    /* ============================================================
+       HERO ABOUT (reused for cas-dusage)
+    ============================================================ */
+    #hero-about {
+      padding: clamp(72px, 10vh, 120px) 0 clamp(56px, 8vh, 96px);
+      border-bottom: var(--border);
+    }
+
+    .hero-about-eyebrow {
+      margin-bottom: 36px;
+    }
+
+    .hero-about-title {
+      font-size: clamp(42px, 6.5vw, 80px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.02;
+      color: var(--black);
+      max-width: 880px;
+      margin-bottom: 40px;
+    }
+    .hero-about-title .dot { color: var(--red); }
+
+    .hero-about-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      max-width: 880px;
+      padding-top: 40px;
+      border-top: var(--border);
+    }
+
+    .hero-about-col p {
+      font-size: 15px;
+      color: var(--gray-700);
+      line-height: 1.75;
+    }
+
+    /* ============================================================
+       CAS D'USAGE
+    ============================================================ */
+    .usecases-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: var(--border);
+    }
+
+    .usecase-col {
+      padding: 36px 32px;
+      border-right: var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+    .usecase-col:last-child { border-right: none; }
+
+    .usecase-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+    .usecase-tag-fast { color: var(--red); }
+    .usecase-tag-mid  { color: var(--gray-700); }
+    .usecase-tag-long { color: var(--gray-500); }
+
+    .usecase-col h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.02em;
+      margin: 0;
+    }
+
+    .usecase-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+    .usecase-list li {
+      display: flex;
+      gap: 12px;
+    }
+    .usecase-list li .marker {
+      flex-shrink: 0;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      margin-top: 1px;
+      font-weight: 500;
+    }
+    .usecase-list li .marker-yes { color: var(--black); }
+
+    .usecase-list li strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 2px;
+    }
+    .usecase-list li span {
+      font-size: 13px;
+      color: var(--gray-500);
+      line-height: 1.55;
+    }
+
+    /* ============================================================
+       CTA FINAL
+    ============================================================ */
+    #cta-about {
+      background: var(--gray-100);
+      border-top: var(--border);
+      padding: 104px 0;
+    }
+
+    .cta-about-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+    }
+
+    .cta-about-eyebrow { margin-bottom: 28px; }
+    .cta-about-eyebrow .label { color: var(--gray-700); }
+
+    .cta-about-tagline {
+      font-size: 13px;
+      font-style: italic;
+      color: var(--gray-700);
+      margin-bottom: 20px;
+    }
+
+    .cta-about-title {
+      font-size: clamp(34px, 5.5vw, 60px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.04;
+      color: var(--black);
+      max-width: 640px;
+      margin-bottom: 20px;
+    }
+    .cta-about-title .dot { color: var(--red); }
+
+    .cta-about-sub {
+      font-size: 15px;
+      color: var(--gray-700);
+      margin-bottom: 40px;
+      max-width: 440px;
+      line-height: 1.7;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      border-top: var(--border);
+      padding: 28px 0;
+      background: var(--white);
+    }
+    .footer-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .footer-logo {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--black);
+      text-decoration: none;
+      letter-spacing: -0.045em;
+    }
+    .footer-logo .dot { color: var(--red); }
+    .footer-copy { font-size: 12.5px; color: var(--gray-500); }
+    .footer-links { display: flex; gap: 22px; list-style: none; }
+    .footer-links a {
+      font-size: 12.5px;
+      color: var(--gray-500);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--black); }
+
+    /* ============================================================
+       ANIMATIONS
+    ============================================================ */
+    @keyframes heroIn {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes drawerIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    nav           { animation: heroIn 0.55s cubic-bezier(0.16,1,0.3,1) both; }
+    .hero-about-eyebrow { animation: heroIn 0.65s cubic-bezier(0.16,1,0.3,1) 0.06s both; }
+    .hero-about-title   { animation: heroIn 0.80s cubic-bezier(0.16,1,0.3,1) 0.13s both; }
+    .hero-about-cols    { animation: heroIn 0.65s cubic-bezier(0.16,1,0.3,1) 0.28s both; }
+
+    .anim {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
+    }
+    .anim.in-view { opacity: 1; transform: none; }
+    .anim:nth-child(1) { transition-delay: 0ms; }
+    .anim:nth-child(2) { transition-delay: 70ms; }
+    .anim:nth-child(3) { transition-delay: 140ms; }
+    .anim:nth-child(4) { transition-delay: 210ms; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .anim, nav, .hero-about-eyebrow, .hero-about-title, .hero-about-cols, .nav-drawer.open {
+        animation: none;
+        transition: none;
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* ============================================================
+       RESPONSIVE — TABLETTE (≤ 900px)
+    ============================================================ */
+    @media (max-width: 900px) {
+      :root { --pad-x: 32px; }
+
+      .hero-about-cols     { grid-template-columns: 1fr; gap: 24px; }
+      .usecases-grid { grid-template-columns: 1fr; }
+      .usecase-col { border-right: none; border-bottom: var(--border); }
+      .usecase-col:last-child { border-bottom: none; }
+    }
+
+    /* ============================================================
+       RESPONSIVE — MOBILE (≤ 640px)
+    ============================================================ */
+    @media (max-width: 640px) {
+      :root { --pad-x: 20px; }
+
+      .section { padding: 56px 0; }
+
+      .nav-links, .nav-cta-desktop { display: none; }
+      .nav-hamburger { display: flex; }
+
+      #hero-about { padding: 48px 0; }
+      .hero-about-title { font-size: clamp(36px, 10vw, 52px); }
+
+      .usecases-grid { grid-template-columns: 1fr; }
+      .usecase-col { border-right: none; border-bottom: var(--border); }
+      .usecase-col:last-child { border-bottom: none; }
+
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .footer-links { flex-wrap: wrap; gap: 16px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav aria-label="Navigation principale">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">kAIros<span class="dot">.</span></a>
+      <ul class="nav-links" role="list">
+        <li><a href="cas-dusage.html" class="active">Cas d'usage</a></li>
+        <li><a href="index.html#methode">Méthode</a></li>
+        <li><a href="index.html#offres">Offres</a></li>
+        <li><a href="index.html#simulateur">Simulateur</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="about.html">À propos</a></li>
+      </ul>
+      <a href="index.html#contact" class="btn nav-cta-desktop">Démarrer →</a>
+      <button class="nav-hamburger" id="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="nav-drawer" id="nav-drawer" aria-label="Menu mobile">
+      <a href="cas-dusage.html">Cas d'usage</a>
+      <a href="index.html#methode">Méthode</a>
+      <a href="index.html#offres">Offres</a>
+      <a href="index.html#simulateur">Simulateur</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="about.html">À propos</a>
+      <a href="index.html#contact" class="btn">Démarrer →</a>
+    </nav>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero-about">
+    <div class="container">
+      <div class="hero-about-eyebrow">
+        <span class="label">Cas d'usage</span>
+      </div>
+      <h1 class="hero-about-title">Ce qu'on peut faire concrètement<span class="dot">.</span></h1>
+      <div class="hero-about-cols">
+        <div class="hero-about-col">
+          <p>De l'automatisation à l'outil sur mesure, chaque mission part d'un besoin réel, pas d'une technologie. On identifie avec vous les tâches où l'IA peut avoir l'impact le plus fort.</p>
+        </div>
+        <div class="hero-about-col">
+          <p>Gagner du temps, amplifier l'activité ou construire sur mesure : chaque cas d'usage est choisi pour son retour concret et sa capacité à libérer de l'énergie pour votre cœur de métier.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CAS D'USAGE GRID ===== -->
+  <section id="usecases" class="section" aria-label="Cas d'usage concrets">
+    <div class="container">
+      <div class="usecases-grid">
+        <div class="usecase-col">
+          <div>
+            <span class="usecase-tag usecase-tag-fast">ROI rapide</span>
+            <h3>Gagner du temps</h3>
+          </div>
+          <ul class="usecase-list" role="list">
+            <li>
+              <span class="marker marker-yes" aria-hidden="true">✦</span>
+              <div>
+                <strong>Comptes rendus automatiques</strong>
+                <span>Réunions, appels, visios → notes structurées, actions et relances générées automatiquement.</span>
+              </div>
+            </li>
+            <li>
+              <span class="marker marker-yes" aria-hidden="true">✦</span>
+              <div>
+                <strong>Tri &amp; routage d'emails</strong>
+                <span>Support client, demandes de devis : classification automatique, réponse draft, assignation.</span>
+              </div>
+            </li>
+            <li>
+              <span class="marker marker-yes" aria-hidden="true">✦</span>
+              <div>
+                <strong>Extraction documentaire</strong>
+                <span>Factures, bulletins, contrats → données structurées sans saisie manuelle.</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="usecase-col">
+          <div>
+            <span class="usecase-tag usecase-tag-mid">ROI confirmé</span>
+            <h3>Amplifier l'activité</h3>
+          </div>
+          <ul class="usecase-list" role="list">
+            <li>
+              <span class="marker marker-yes" aria-hidden="true">✦</span>
+              <div>
+                <strong>Alertes &amp; veille automatisée</strong>
+                <span>Surveillance prix concurrents, réglementation, appels d'offres, avis clients, tout remonté au fil de l'eau.</span>
+              </div>
+            </li>
+            <li>
+              <span class="marker marker-yes" aria-hidden="true">✦</span>
+              <div>
+                <strong>Analyse de données commerciales</strong>
+                <span>Segmentation client, prévision d'attrition, optimisation du panier moyen.</span>
+              </div>
+            </li>
+            <li>
+              <span class="marker marker-yes" aria-hidden="true">✦</span>
+              <div>
+                <strong>Génération de devis &amp; propositions</strong>
+                <span>Template + contexte client + historique : un devis personnalisé prêt en quelques minutes.</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="usecase-col">
+          <div>
+            <span class="usecase-tag usecase-tag-long">ROI durable</span>
+            <h3>Construire sur mesure</h3>
+          </div>
+          <ul class="usecase-list" role="list">
+            <li>
+              <span class="marker marker-yes" aria-hidden="true">✦</span>
+              <div>
+                <strong>Outils spécifiques internalisés</strong>
+                <span>Petit logiciel métier sur mesure : calculateur, planning intelligent, validateur de conformité.</span>
+              </div>
+            </li>
+            <li>
+              <span class="marker marker-yes" aria-hidden="true">✦</span>
+              <div>
+                <strong>Agent interne de connaissances</strong>
+                <span>« Pose ta question à ta doc » : procédures, historique, notes, réponse instantanée pour l'équipe.</span>
+              </div>
+            </li>
+            <li>
+              <span class="marker marker-yes" aria-hidden="true">✦</span>
+              <div>
+                <strong>Site web augmenté par l'IA</strong>
+                <span>Contenu généré, personnalisation, A/B testing dynamique : un site qui évolue avec vos clients.</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section id="cta-about">
+    <div class="cta-about-inner">
+      <div class="cta-about-eyebrow">
+        <span class="label">Premier pas</span>
+      </div>
+      <p class="cta-about-tagline">Un cas d'usage concret commence toujours par un échange.</p>
+      <h2 class="cta-about-title">Parlons de votre kairos<span class="dot">.</span></h2>
+      <p class="cta-about-sub">30 minutes, gratuites, sans engagement. On évalue ensemble quel cas d'usage est le plus prometteur pour vous et par où commencer concrètement.</p>
+      <a href="index.html#contact" class="btn">Prendre contact →</a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-inner">
+      <a href="index.html" class="footer-logo">kAIros<span class="dot">.</span></a>
+      <p class="footer-copy">© 2026 kAIros. Conseil IA pour TPE/PME</p>
+      <ul class="footer-links" role="list">
+        <li><a href="index.html#methode">Méthode</a></li>
+        <li><a href="index.html#offres">Offres</a></li>
+        <li><a href="about.html">À propos</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    /* ===== NAV SCROLL ===== */
+    (function () {
+      const nav = document.querySelector('nav');
+      window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 10);
+      }, { passive: true });
+    })();
+
+    /* ===== HAMBURGER ===== */
+    (function () {
+      const btn    = document.getElementById('nav-toggle');
+      const drawer = document.getElementById('nav-drawer');
+      if (!btn || !drawer) return;
+
+      function close() {
+        drawer.classList.remove('open');
+        btn.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+      function open() {
+        drawer.classList.add('open');
+        btn.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+
+      btn.addEventListener('click', () => drawer.classList.contains('open') ? close() : open());
+      drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    })();
+
+    /* ===== ANIMATION SCROLL ===== */
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in-view');
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll(
+        '.usecase-col, ' +
+        '.anim'
+      ).forEach(el => { el.classList.add('anim'); obs.observe(el); });
+    })();
+  </script>
+
+</body>
+</html>
