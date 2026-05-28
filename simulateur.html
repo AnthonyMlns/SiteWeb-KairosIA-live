@@ -641,10 +641,10 @@
 
     @media (prefers-reduced-motion: reduce) {
       .anim, nav, .hero-about-eyebrow, .hero-about-title, .hero-about-cols, .nav-drawer.open {
-        animation: none;
-        transition: none;
-        opacity: 1;
-        transform: none;
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
       }
     }
 
@@ -905,7 +905,8 @@
 
       document.querySelectorAll(
         '.section-header, ' +
-        '.sim-left, .sim-right'
+        '.sim-left, .sim-right, ' +
+        '.cta-about-inner > *'
       ).forEach(el => { el.classList.add('anim'); obs.observe(el); });
     })();
 

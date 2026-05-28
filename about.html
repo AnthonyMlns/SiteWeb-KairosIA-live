@@ -661,13 +661,15 @@
     .anim:nth-child(2) { transition-delay: 70ms; }
     .anim:nth-child(3) { transition-delay: 140ms; }
     .anim:nth-child(4) { transition-delay: 210ms; }
+    .anim:nth-child(5) { transition-delay: 280ms; }
+    .anim:nth-child(6) { transition-delay: 350ms; }
 
     @media (prefers-reduced-motion: reduce) {
       .anim, nav, .hero-about-eyebrow, .hero-about-title, .hero-about-cols, .nav-drawer.open {
-        animation: none;
-        transition: none;
-        opacity: 1;
-        transform: none;
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
       }
     }
 
@@ -1011,7 +1013,7 @@
             obs.unobserve(e.target);
           }
         });
-      }, { threshold: 0.12 });
+      }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
 
       document.querySelectorAll(
         '.etym-left, .etym-right, ' +
@@ -1019,6 +1021,7 @@
         '.diff-intro, .diff-col, ' +
         '.posture-intro, .posture-item, ' +
         '.equipe-grid > *, ' +
+        '.cta-about-inner > *, ' +
         '.anim'
       ).forEach(el => { el.classList.add('anim'); obs.observe(el); });
     })();
