@@ -360,111 +360,6 @@
     }
 
     /* ============================================================
-       OFFRES — MOD BOX
-    ============================================================ */
-    .offres-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .offre-card {
-      display: flex;
-      flex-direction: column;
-      border: var(--border);
-      background: var(--white);
-      transition: border-color 0.2s, box-shadow 0.2s;
-      overflow: hidden;
-    }
-    .offre-card:hover {
-      border-color: var(--gray-500);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-    }
-
-    .offre-card-top {
-      padding: 28px 28px 24px;
-      border-bottom: var(--border);
-    }
-
-    .offre-from {
-      font-family: var(--font-mono);
-      font-size: 9.5px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gray-500);
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .offre-price {
-      font-family: var(--font-sans);
-      font-size: 28px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: var(--red);
-      line-height: 1;
-      margin-bottom: 16px;
-    }
-
-    .offre-card-icon {
-      width: 28px;
-      height: 28px;
-      color: var(--black);
-      stroke-width: 1.5;
-    }
-
-    .offre-card-body { padding: 24px 28px; flex: 1; }
-
-    .offre-card-body h3 {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--black);
-      margin-bottom: 8px;
-      letter-spacing: -0.01em;
-    }
-
-    .offre-card-body p {
-      font-size: 13.5px;
-      color: var(--gray-500);
-      line-height: 1.65;
-      margin-bottom: 18px;
-    }
-
-    .offre-features {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .offre-features li {
-      display: flex;
-      gap: 10px;
-      font-size: 13px;
-      color: var(--gray-700);
-      align-items: baseline;
-    }
-    .offre-features li::before {
-      content: '-';
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--gray-500);
-      flex-shrink: 0;
-    }
-
-    /* ============================================================
-       TARIFS (note)
-    ============================================================ */
-    .tarifs-note {
-      margin-top: 16px;
-      font-size: 12.5px;
-      color: var(--gray-500);
-      line-height: 1.7;
-      padding: 14px 18px;
-      background: var(--gray-100);
-      border: var(--border);
-    }
-
-    /* ============================================================
        SIMULATEUR ROI — DEUX PANNEAUX
     ============================================================ */
     .sim-panels {
@@ -802,8 +697,6 @@
 
       .hero-about-cols { grid-template-columns: 1fr; gap: 24px; }
 
-      .offres-grid { grid-template-columns: 1fr 1fr; }
-
       .sim-panels { grid-template-columns: 1fr; }
       .sim-left { border-right: none; border-bottom: var(--border); }
       .sim-right { min-height: auto; }
@@ -824,8 +717,6 @@
       .hero-about-title { font-size: clamp(36px, 10vw, 52px); }
 
       .step { grid-template-columns: 28px 1fr; gap: 14px; }
-
-      .offres-grid { grid-template-columns: 1fr; }
 
       .sim-left { padding: 28px 24px; }
       .sim-struct-btns { gap: 6px; }
@@ -928,83 +819,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ===== OFFRES ===== -->
-  <section id="offres" class="section" aria-label="Offres possibles">
-    <div class="container">
-      <div class="section-header">
-        <span class="label">Offres possibles</span>
-        <h2 class="section-title">Ce qu'on met en œuvre.</h2>
-        <p class="section-sub">Définis lors du diagnostic selon vos besoins réels, pas avant.</p>
-      </div>
-      <div class="offres-grid">
-
-        <div class="offre-card">
-          <div class="offre-card-top">
-            <span class="offre-from">À partir de</span>
-            <p class="offre-price">1 000 €</p>
-            <svg class="offre-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-            </svg>
-          </div>
-          <div class="offre-card-body">
-            <h3>Automatisations</h3>
-            <p>Identification et automatisation des tâches à faible valeur ajoutée. Les résultats se mesurent dès les premières semaines d'utilisation.</p>
-            <ul class="offre-features">
-              <li>Cartographie des tâches répétitives</li>
-              <li>Mise en place de flux de travail automatisés</li>
-              <li>Formation et prise en main des équipes</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="offre-card">
-          <div class="offre-card-top">
-            <span class="offre-from">À partir de</span>
-            <p class="offre-price">2 000 €</p>
-            <svg class="offre-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-            </svg>
-          </div>
-          <div class="offre-card-body">
-            <h3>IA locales &amp; dédiées</h3>
-            <p>Installation d'IA spécifiques, hébergées chez l'entreprise ou son prestataire. Vos données restent sous votre contrôle.</p>
-            <ul class="offre-features">
-              <li>Hébergement sur vos serveurs ou OVH / Hostinger</li>
-              <li>Données souveraines, jamais partagées</li>
-              <li>IA configurée pour votre métier</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="offre-card">
-          <div class="offre-card-top">
-            <span class="offre-from">À partir de</span>
-            <p class="offre-price">1 500 €</p>
-            <svg class="offre-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-              <polyline points="16 18 22 12 16 6"/>
-              <polyline points="8 6 2 12 8 18"/>
-            </svg>
-          </div>
-          <div class="offre-card-body">
-            <h3>Outils sur mesure</h3>
-            <p>Intégration d'outils IA adaptés au métier et aux processus existants. On part de ce que vous utilisez déjà.</p>
-            <ul class="offre-features">
-              <li>Intégration dans vos outils existants</li>
-              <li>Développement adapté à vos processus</li>
-              <li>Documentation et support inclus</li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
-
-      <p class="tarifs-note" style="margin-top:24px">
-        <strong>Gouvernance des données :</strong> vous choisissez où sont hébergées vos données, dans votre infrastructure, via OVH, Hostinger ou tout autre prestataire, selon le projet. Le coût du diagnostic est déduit du devis d'implantation si vous poursuivez avec nous.
-      </p>
     </div>
   </section>
 
@@ -1178,8 +992,7 @@
       }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
 
       document.querySelectorAll(
-        '.section-header, .step, .offre-card, ' +
-        '.tarifs-note, ' +
+        '.section-header, .step, ' +
         '.sim-left, .sim-right'
       ).forEach(el => { el.classList.add('anim'); obs.observe(el); });
     })();
