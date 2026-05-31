@@ -20,11 +20,6 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="kAIros. · Contact" />
 
-  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="manifest" href="/site.webmanifest" />
-
   <script src="/_vercel/speed-insights/script.js" defer></script>
   <script src="/_vercel/analytics/script.js" defer></script>
 
@@ -295,6 +290,12 @@
       gap: 16px;
     }
 
+    .contact-form label {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
     .contact-form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -523,21 +524,39 @@
         <div>
           <form class="contact-form" id="contact-form">
             <div class="contact-form-row">
-              <input type="text" name="name" placeholder="Nom *" required />
-              <input type="email" name="email" placeholder="Email *" required />
+              <label>
+                <span class="label">Nom *</span>
+                <input type="text" name="name" placeholder="Votre nom" autocomplete="name" required />
+              </label>
+              <label>
+                <span class="label">Email *</span>
+                <input type="email" name="email" placeholder="votre@email.com" autocomplete="email" required />
+              </label>
             </div>
             <div class="contact-form-row">
-              <input type="tel" name="phone" placeholder="Téléphone" />
-              <input type="text" name="company" placeholder="Entreprise" />
+              <label>
+                <span class="label">Téléphone</span>
+                <input type="tel" name="phone" placeholder="Votre téléphone" autocomplete="tel" />
+              </label>
+              <label>
+                <span class="label">Entreprise</span>
+                <input type="text" name="company" placeholder="Nom de l'entreprise" autocomplete="organization" />
+              </label>
             </div>
-            <select name="size">
-              <option value="">Taille de l'entreprise</option>
-              <option value="1-5">1-5 (TPE)</option>
-              <option value="6-20">6-20 (Petite PME)</option>
-              <option value="21-50">21-50 (PME)</option>
-              <option value="50+">50+</option>
-            </select>
-            <textarea name="message" placeholder="Votre message *" required></textarea>
+            <label>
+              <span class="label">Taille de l'entreprise</span>
+              <select name="size">
+                <option value="">Sélectionnez</option>
+                <option value="1-5">1-5 (TPE)</option>
+                <option value="6-20">6-20 (Petite PME)</option>
+                <option value="21-50">21-50 (PME)</option>
+                <option value="50+">50+</option>
+              </select>
+            </label>
+            <label>
+              <span class="label">Message *</span>
+              <textarea name="message" placeholder="Parlez-nous de votre projet..." required></textarea>
+            </label>
             <div class="contact-form-status" id="contact-form-status"></div>
             <button type="submit" class="btn">Envoyer →</button>
           </form>
