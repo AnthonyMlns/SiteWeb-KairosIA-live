@@ -725,15 +725,15 @@
     </div>
   </section>
 
-  <!-- ===== CAS D'USAGE — CMS ===== -->
-  <section id="usecases-cms" class="section" aria-label="Encore plus de cas d'usage">
+  <!-- ===== BLOG — CMS ===== -->
+  <section id="blog-cms" class="section" aria-label="Blog">
     <div class="container">
       <div class="section-header">
-        <span class="label">Cas d'usage</span>
+        <span class="label">Blog</span>
         <h2 class="section-title">D'autres cas concrets adaptés à votre métier<span class="dot">.</span></h2>
         <p class="section-sub">Des exemples supplémentaires qui montrent comment l'IA peut s'adapter à vos processus, quel que soit votre secteur ou votre taille d'équipe.</p>
       </div>
-      <div id="usecases-cms-container">
+      <div id="usecases-container">
         <div style="text-align:center;padding:48px 0;color:var(--gray-500);">Chargement des cas d'usage…</div>
       </div>
     </div>
@@ -860,7 +860,7 @@
   <script src="js/sanity.js"></script>
   <script>
     (function () {
-      var container = document.getElementById('usecases-cms-container')
+      var container = document.getElementById('usecases-container')
       if (!container) return
 
       window.kairosSanity.fetchUseCases().then(function (categories) {
