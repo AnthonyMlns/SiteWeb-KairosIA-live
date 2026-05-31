@@ -1,6 +1,7 @@
 # kAIros. — Site Web Landing Page
 
-![GitHub Pages](https://img.shields.io/badge/Vercel-deployed-brightgreen)
+![Vercel](https://img.shields.io/badge/Vercel-deployed-brightgreen)
+![Domain](https://img.shields.io/badge/domain-kairos--digital.com-blue)
 ![Last Commit](https://img.shields.io/github/last-commit/AnthonyMlns/SiteWebKairosIA-live)
 
 Landing page pour **kAIros.**, cabinet de conseil en transformation IA pour TPE/PME françaises.
@@ -24,6 +25,7 @@ Site vitrine statique (HTML/CSS/JS vanilla) avec **6 pages**, alimenté dynamiqu
 - **CMS** : Sanity (`sanity/`) — headless CMS, projectId `deh20epq`, dataset `production`
 - **Studio** : Déployé sur `kairos-ia.sanity.studio`
 - **Hébergement** : Vercel (Speed Insights + Analytics)
+- **Domaine** : `kairos-digital.com`
 - **Design system** : tokens CSS (variables) · [`design-system.md`](design-system.md) · `#cc2c22` rouge accent · Inter 800 (titres) + JetBrains Mono (labels)
 - **SEO** : schema.org JSON-LD (Organization, LocalBusiness, ProfessionalService) · Open Graph · Twitter Card · `llms.txt`
 - **Responsive** : hamburger menu mobile full-screen · breakpoints 900 px / 640 px · images en background sur mobile
