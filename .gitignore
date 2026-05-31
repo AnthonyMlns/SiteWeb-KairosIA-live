@@ -17,3 +17,6 @@ node_modules/
 
 # Sanity runtime (généré par sanity dev)
 .sanity/
+
+# Sanity build (déployé via sanity deploy, pas via git)
+sanity/dist/
