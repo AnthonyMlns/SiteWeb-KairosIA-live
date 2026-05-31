@@ -52,7 +52,7 @@ window.kairosContact = (function () {
         })
         .catch(function (err) {
           status.className = 'contact-form-status error'
-          status.textContent = 'Une erreur est survenue. Réessayez ou écrivez-nous directement à contact@kairos.fr.'
+          status.textContent = 'Une erreur est survenue. Réessayez ou contactez-nous via le formulaire.'
         })
         .finally(function () {
           submitBtn.disabled = false
