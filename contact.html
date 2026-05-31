@@ -4,18 +4,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#ffffff" />
+  <meta name="author" content="kAIros." />
 
-  <title>kAIros. · Page non trouvée</title>
-  <meta name="description" content="La page que vous cherchez n'existe pas ou a été déplacée. Retournez à l'accueil.">
-  <meta name="robots" content="noindex, nofollow">
-  <link rel="canonical" href="https://www.kairos.fr/404.html" />
+  <title>kAIros. · Contact | Conseil IA pour TPE/PME</title>
+  <meta name="description" content="Contactez kAIros. pour un échange découverte gratuit de 30 minutes. Transformez votre TPE/PME avec l'intelligence artificielle.">
+  <link rel="canonical" href="https://www.kairos.fr/contact" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="kAIros." />
+  <meta property="og:title" content="kAIros. · Contact" />
+  <meta property="og:description" content="Échange découverte gratuit de 30 minutes." />
+  <meta property="og:url" content="https://www.kairos.fr/contact" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="kAIros. · Contact" />
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <script src="/_vercel/speed-insights/script.js" defer></script>
+  <script src="/_vercel/analytics/script.js" defer></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-
-  <script src="/_vercel/speed-insights/script.js" defer></script>
-  <script src="/_vercel/analytics/script.js" defer></script>
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -48,9 +63,6 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
     }
 
     .label {
@@ -87,15 +99,14 @@
       white-space: nowrap;
     }
     .btn:hover { background: var(--gray-900); }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--black);
-      border: var(--border);
+    .btn-red {
+      background: var(--red);
+      color: var(--white);
+      border-color: var(--red);
     }
-    .btn-outline:hover { background: var(--gray-100); }
+    .btn-red:hover { background: #b02218; }
 
-    /* ===== NAVIGATION ===== */
+    /* Navigation */
     nav {
       position: sticky;
       top: 0;
@@ -142,6 +153,7 @@
       transition: color 0.15s;
     }
     .nav-links a:hover { color: var(--black); }
+    .nav-links a.active { color: var(--black); font-weight: 500; }
 
     .nav-hamburger {
       display: none;
@@ -186,20 +198,24 @@
       animation: drawerIn 0.22s cubic-bezier(0.16,1,0.3,1) both;
     }
     .nav-drawer a:not(.btn) {
+      display: flex;
+      align-items: center;
       font-size: 24px;
       font-weight: 700;
       letter-spacing: -0.025em;
       color: var(--black);
       text-decoration: none;
-      padding: 14px 0;
+      padding: 18px 0;
+      border-bottom: var(--border);
       transition: color 0.15s;
     }
     .nav-drawer a:not(.btn):hover { color: var(--red); }
+    .nav-drawer a:not(.btn).active { color: var(--red); }
+    .nav-drawer a:not(.btn):last-of-type { border-bottom: none; }
     .nav-drawer .btn {
-      margin-top: 16px;
+      margin-top: auto;
       justify-content: center;
       width: 100%;
-      max-width: 280px;
     }
     .nav-drawer-close {
       position: absolute;
@@ -220,59 +236,157 @@
     }
     .nav-drawer-close:hover { color: var(--red); }
 
-    /* ===== HERO 404 ===== */
-    #hero-404 {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 80px 0;
+    /* Hero */
+    #hero-contact {
+      padding: clamp(72px, 10vh, 120px) 0 clamp(56px, 8vh, 96px);
       border-bottom: var(--border);
     }
 
-    .hero-404-inner {
-      text-align: center;
-      max-width: 560px;
-    }
+    .hero-contact-eyebrow { margin-bottom: 36px; }
 
-    .hero-404-eyebrow {
-      margin-bottom: 24px;
-    }
-
-    .hero-404-code {
-      font-family: var(--font-sans);
-      font-size: clamp(96px, 20vw, 180px);
+    .hero-contact-title {
+      font-size: clamp(42px, 6.5vw, 80px);
       font-weight: 800;
-      letter-spacing: -0.06em;
-      line-height: 0.88;
+      letter-spacing: -0.04em;
+      line-height: 1.02;
       color: var(--black);
-      margin-bottom: 8px;
+      max-width: 780px;
+      margin-bottom: 20px;
     }
-    .hero-404-code span { color: var(--red); }
+    .hero-contact-title .dot { color: var(--red); }
 
-    .hero-404-title {
-      font-size: clamp(20px, 3vw, 28px);
-      font-weight: 700;
-      letter-spacing: -0.025em;
-      color: var(--black);
-      margin-bottom: 16px;
-    }
-
-    .hero-404-text {
+    .hero-contact-sub {
       font-size: 15px;
       color: var(--gray-500);
+      max-width: 560px;
       line-height: 1.7;
-      margin-bottom: 36px;
     }
 
-    .hero-404-actions {
+    /* Contact grid */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .contact-image-wrapper {
+      position: sticky;
+      top: 80px;
+    }
+
+    .contact-image {
+      width: 100%;
+      height: auto;
+      max-height: 80vh;
+      object-fit: contain;
+      display: block;
+      border-radius: 4px;
+    }
+
+    /* Form */
+    .contact-form-section {
+      padding: 80px 0 104px;
+    }
+
+    .contact-form {
       display: flex;
-      gap: 10px;
-      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .contact-form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      padding: 10px 14px;
+      border: var(--border);
+      border-radius: 2px;
+      background: var(--white);
+      color: var(--black);
+      outline: none;
+      transition: border-color 0.15s;
+      width: 100%;
+    }
+
+    .contact-form input:focus,
+    .contact-form select:focus,
+    .contact-form textarea:focus {
+      border-color: var(--gray-700);
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .contact-form .btn {
+      align-self: flex-start;
+    }
+
+    .contact-form-status {
+      font-size: 14px;
+      padding: 10px 14px;
+      border-radius: 2px;
+      display: none;
+    }
+
+    .contact-form-status.success {
+      display: block;
+      background: #e6f7e6;
+      color: #1a7d1a;
+      border: 1px solid #b8e6b8;
+    }
+
+    .contact-form-status.error {
+      display: block;
+      background: #fde8e8;
+      color: var(--red);
+      border: 1px solid #f5c6c6;
+    }
+
+    /* Info bloc */
+    .contact-info {
+      margin-top: 48px;
+      padding-top: 40px;
+      border-top: var(--border);
+    }
+
+    .contact-info-grid {
+      display: flex;
+      gap: 48px;
       flex-wrap: wrap;
     }
 
-    /* ===== FOOTER ===== */
+    .contact-info-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .contact-info-item .label {
+      color: var(--gray-700);
+    }
+
+    .contact-info-item a,
+    .contact-info-item span {
+      font-size: 14.5px;
+      color: var(--gray-700);
+      text-decoration: none;
+    }
+
+    .contact-info-item a:hover {
+      color: var(--red);
+    }
+
+    /* Footer */
     footer {
       border-top: var(--border);
       padding: 28px 0;
@@ -307,7 +421,7 @@
     }
     .footer-links a:hover { color: var(--black); }
 
-    /* ===== ANIMATIONS ===== */
+    /* Animations */
     @keyframes heroIn {
       from { opacity: 0; transform: translateY(22px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -317,16 +431,20 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    nav                   { animation: heroIn 0.55s cubic-bezier(0.16,1,0.3,1) both; }
-    .hero-404-eyebrow     { animation: heroIn 0.65s cubic-bezier(0.16,1,0.3,1) 0.06s both; }
-    .hero-404-code        { animation: heroIn 0.80s cubic-bezier(0.16,1,0.3,1) 0.13s both; }
-    .hero-404-title       { animation: heroIn 0.65s cubic-bezier(0.16,1,0.3,1) 0.26s both; }
-    .hero-404-text        { animation: heroIn 0.65s cubic-bezier(0.16,1,0.3,1) 0.36s both; }
-    .hero-404-actions     { animation: heroIn 0.65s cubic-bezier(0.16,1,0.3,1) 0.46s both; }
+    nav           { animation: heroIn 0.55s cubic-bezier(0.16,1,0.3,1) both; }
+    .hero-contact-eyebrow { animation: heroIn 0.65s cubic-bezier(0.16,1,0.3,1) 0.06s both; }
+    .hero-contact-title   { animation: heroIn 0.80s cubic-bezier(0.16,1,0.3,1) 0.13s both; }
+    .hero-contact-sub     { animation: heroIn 0.65s cubic-bezier(0.16,1,0.3,1) 0.28s both; }
+
+    .anim {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
+    }
+    .anim.in-view { opacity: 1; transform: none; }
 
     @media (prefers-reduced-motion: reduce) {
-      nav, .hero-404-eyebrow, .hero-404-code, .hero-404-title,
-      .hero-404-text, .hero-404-actions, .nav-drawer.open {
+      .anim, nav, .hero-contact-eyebrow, .hero-contact-title, .hero-contact-sub, .nav-drawer.open {
         animation: none !important;
         transition: none !important;
         opacity: 1 !important;
@@ -334,9 +452,12 @@
       }
     }
 
-    /* ===== RESPONSIVE ===== */
+    /* Responsive */
     @media (max-width: 900px) {
       :root { --pad-x: 32px; }
+
+      .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+      .contact-image-wrapper { display: none; }
     }
 
     @media (max-width: 640px) {
@@ -345,10 +466,12 @@
       .nav-links, .nav-cta-desktop { display: none; }
       .nav-hamburger { display: flex; }
 
-      #hero-404 { padding: 56px 0; }
+      #hero-contact { padding: 48px 0; }
+      .hero-contact-title { font-size: clamp(36px, 10vw, 52px); }
 
-      .hero-404-actions { flex-direction: column; align-items: stretch; }
-      .hero-404-actions .btn { justify-content: center; }
+      .contact-form-section { padding: 48px 0 56px; }
+      .contact-form-row { grid-template-columns: 1fr; }
+      .contact-info-grid { flex-direction: column; gap: 24px; }
 
       .footer-inner { flex-direction: column; align-items: flex-start; gap: 14px; }
       .footer-links { flex-wrap: wrap; gap: 16px; }
@@ -382,18 +505,63 @@
     </div>
   </nav>
 
-  <!-- ===== HERO 404 ===== -->
-  <section id="hero-404" aria-label="Page non trouvée">
-    <div class="container hero-404-inner">
-      <div class="hero-404-eyebrow">
-        <span class="label">Erreur 404</span>
+  <!-- ===== HERO ===== -->
+  <section id="hero-contact">
+    <div class="container">
+      <div class="hero-contact-eyebrow">
+        <span class="label">Contact</span>
       </div>
-      <h1 class="hero-404-code">4<span>0</span>4</h1>
-      <p class="hero-404-title">Page non trouvée<span class="dot">.</span></p>
-      <p class="hero-404-text">Le kairos que vous cherchiez s'est envolé.<br>Cette page n'existe pas ou a été déplacée.</p>
-      <div class="hero-404-actions">
-        <a href="index.html" class="btn btn-red">Retour à l'accueil →</a>
-        <a href="contact.html" class="btn btn-outline">Nous contacter</a>
+      <h1 class="hero-contact-title">Parlons de votre kairos<span class="dot">.</span></h1>
+      <p class="hero-contact-sub">30 minutes, gratuites, sans engagement. On évalue ensemble si l'IA peut vous apporter une valeur réelle et par où commencer concrètement.</p>
+    </div>
+  </section>
+
+  <!-- ===== FORM + IMAGE ===== -->
+  <section class="contact-form-section" aria-label="Formulaire de contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <form class="contact-form" id="contact-form">
+            <div class="contact-form-row">
+              <input type="text" name="name" placeholder="Nom *" required />
+              <input type="email" name="email" placeholder="Email *" required />
+            </div>
+            <div class="contact-form-row">
+              <input type="tel" name="phone" placeholder="Téléphone" />
+              <input type="text" name="company" placeholder="Entreprise" />
+            </div>
+            <select name="size">
+              <option value="">Taille de l'entreprise</option>
+              <option value="1-5">1-5 (TPE)</option>
+              <option value="6-20">6-20 (Petite PME)</option>
+              <option value="21-50">21-50 (PME)</option>
+              <option value="50+">50+</option>
+            </select>
+            <textarea name="message" placeholder="Votre message *" required></textarea>
+            <div class="contact-form-status" id="contact-form-status"></div>
+            <button type="submit" class="btn">Envoyer →</button>
+          </form>
+
+          <div class="contact-info">
+            <div class="contact-info-grid">
+              <div class="contact-info-item">
+                <span class="label">Email</span>
+                <a href="mailto:contact@kairos.fr">contact@kairos.fr</a>
+              </div>
+              <div class="contact-info-item">
+                <span class="label">Localisation</span>
+                <span>Montpellier, Occitanie</span>
+              </div>
+              <div class="contact-info-item">
+                <span class="label">Disponibilité</span>
+                <span>Réponse sous 24h</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-image-wrapper">
+          <img src="images/image-4.png" alt="kAIros. — Contact" class="contact-image" loading="lazy" />
+        </div>
       </div>
     </div>
   </section>
@@ -411,6 +579,11 @@
       </ul>
     </div>
   </footer>
+
+  <script src="js/contact.js"></script>
+  <script>
+    kairosContact.init('contact-form')
+  </script>
 
   <script>
     /* ===== NAV SCROLL ===== */
@@ -433,18 +606,36 @@
         btn.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
       }
-      function open() {
+      function openMenu() {
         drawer.classList.add('open');
         btn.classList.add('open');
         btn.setAttribute('aria-expanded', 'true');
         document.body.style.overflow = 'hidden';
       }
 
-      btn.addEventListener('click', () => drawer.classList.contains('open') ? close() : open());
+      btn.addEventListener('click', () => drawer.classList.contains('open') ? close() : openMenu());
       drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
       const closeBtn = document.getElementById('nav-drawer-close');
       if (closeBtn) closeBtn.addEventListener('click', close);
       document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    })();
+
+    /* ===== ANIMATION SCROLL ===== */
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in-view');
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+
+      document.querySelectorAll(
+        '.contact-form-section > .container > *'
+      ).forEach(el => { el.classList.add('anim'); obs.observe(el); });
     })();
   </script>
 
