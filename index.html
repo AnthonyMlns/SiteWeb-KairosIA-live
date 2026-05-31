@@ -649,77 +649,6 @@
     }
 
     /* ============================================================
-       CONTACT FORM
-    ============================================================ */
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      max-width: 480px;
-    }
-
-    .contact-form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .contact-form input,
-    .contact-form select,
-    .contact-form textarea {
-      font-family: var(--font-sans);
-      font-size: 14px;
-      padding: 10px 14px;
-      border: var(--border);
-      border-radius: 2px;
-      background: var(--white);
-      color: var(--black);
-      outline: none;
-      transition: border-color 0.15s;
-      width: 100%;
-    }
-
-    .contact-form input:focus,
-    .contact-form select:focus,
-    .contact-form textarea:focus {
-      border-color: var(--gray-700);
-    }
-
-    .contact-form textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
-
-    .contact-form .btn {
-      align-self: flex-start;
-    }
-
-    .contact-form-status {
-      font-size: 14px;
-      padding: 10px 14px;
-      border-radius: 2px;
-      display: none;
-    }
-
-    .contact-form-status.success {
-      display: block;
-      background: #e6f7e6;
-      color: #1a7d1a;
-      border: 1px solid #b8e6b8;
-    }
-
-    .contact-form-status.error {
-      display: block;
-      background: #fde8e8;
-      color: var(--red);
-      border: 1px solid #f5c6c6;
-    }
-
-    @media (max-width: 640px) {
-      .contact-form-row { grid-template-columns: 1fr; }
-    }
-
-    /* ============================================================
        FOOTER
     ============================================================ */
     footer {
@@ -1064,26 +993,7 @@
       <p class="contact-tagline">Une opportunité commence toujours par un échange.</p>
       <h2 class="contact-title">Parlons de votre kairos<span class="dot">.</span></h2>
       <p class="contact-sub">30 minutes, gratuites, sans engagement. On évalue ensemble si l'IA peut vous apporter une valeur réelle et par où commencer concrètement.</p>
-      <form class="contact-form" id="contact-form">
-        <div class="contact-form-row">
-          <input type="text" name="name" placeholder="Nom *" required />
-          <input type="email" name="email" placeholder="Email *" required />
-        </div>
-        <div class="contact-form-row">
-          <input type="tel" name="phone" placeholder="Téléphone" />
-          <input type="text" name="company" placeholder="Entreprise" />
-        </div>
-        <select name="size">
-          <option value="">Taille de l'entreprise</option>
-          <option value="1-5">1-5 (TPE)</option>
-          <option value="6-20">6-20 (Petite PME)</option>
-          <option value="21-50">21-50 (PME)</option>
-          <option value="50+">50+</option>
-        </select>
-        <textarea name="message" placeholder="Votre message *" required></textarea>
-        <div class="contact-form-status" id="contact-form-status"></div>
-        <button type="submit" class="btn">Envoyer →</button>
-      </form>
+      <a href="contact.html" class="btn btn-red">Réserver mon échange gratuit →</a>
     </div>
   </section>
 
@@ -1101,11 +1011,6 @@
       </ul>
     </div>
   </footer>
-
-  <script src="js/contact.js"></script>
-  <script>
-    kairosContact.init('contact-form')
-  </script>
 
   <script>
     /* ===== ANIMATION SYSTEM ===== */
