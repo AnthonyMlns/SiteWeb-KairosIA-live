@@ -86,6 +86,8 @@ Configurez votre `.env` à partir de `.env.example`.
 │       ├── useCaseCategory.js    # Schéma : catégorie de cas d'usage
 │       └── contactSubmission.js  # Schéma : soumissions formulaire
 │
+├── package.json
+├── package-lock.json
 ├── design-system.md
 ├── llms.txt
 ├── .env.example
