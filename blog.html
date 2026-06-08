@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#ffffff" />
 
-  <title>kAIros. · Page non trouvée</title>
-  <meta name="description" content="La page que vous cherchez n'existe pas ou a été déplacée. Retournez à l'accueil.">
-  <meta name="robots" content="noindex, nofollow">
-  <link rel="canonical" href="https://www.kairos.fr/404.html" />
+  <title>kAIros. · Blog | Intelligence artificielle pour TPE/PME</title>
+  <meta name="description" content="Articles, conseils et retours d'expérience sur l'IA pour TPE/PME. Automatisation, productivité, transformation digitale — des ressources concrètes pour passer à l'action.">
+  <link rel="canonical" href="https://www.kairos.fr/blog" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -34,7 +33,7 @@
       --font-mono: 'JetBrains Mono', 'Courier New', monospace;
       --border:    1px solid var(--gray-200);
 
-      --max-w: 1120px;
+      --max-w: 820px;
       --pad-x: 48px;
     }
 
@@ -48,19 +47,6 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    .label {
-      font-family: var(--font-mono);
-      font-size: 10.5px;
-      font-weight: 500;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      color: var(--gray-500);
-      display: inline-block;
     }
 
     .container {
@@ -88,6 +74,13 @@
     }
     .btn:hover { background: var(--gray-900); }
 
+    .btn-red {
+      background: var(--red);
+      color: var(--white);
+      border-color: var(--red);
+    }
+    .btn-red:hover { background: #b02218; }
+
     .btn-outline {
       background: transparent;
       color: var(--black);
@@ -95,7 +88,6 @@
     }
     .btn-outline:hover { background: var(--gray-100); }
 
-    /* ===== NAVIGATION ===== */
     nav {
       position: sticky;
       top: 0;
@@ -113,7 +105,7 @@
       align-items: center;
       justify-content: space-between;
       height: 58px;
-      max-width: var(--max-w);
+      max-width: 1120px;
       margin: 0 auto;
       padding: 0 var(--pad-x);
     }
@@ -142,6 +134,7 @@
       transition: color 0.15s;
     }
     .nav-links a:hover { color: var(--black); }
+    .nav-links a.active { color: var(--black); font-weight: 500; }
 
     .nav-hamburger {
       display: none;
@@ -195,6 +188,7 @@
       transition: color 0.15s;
     }
     .nav-drawer a:not(.btn):hover { color: var(--red); }
+    .nav-drawer a.active:not(.btn) { color: var(--red); }
     .nav-drawer .btn {
       margin-top: 16px;
       justify-content: center;
@@ -220,66 +214,157 @@
     }
     .nav-drawer-close:hover { color: var(--red); }
 
-    /* ===== HERO 404 ===== */
-    #hero-404 {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 80px 0;
-      border-bottom: var(--border);
+    .blog-header {
+      padding: clamp(48px, 8vh, 80px) 0;
     }
 
-    .hero-404-inner {
-      text-align: center;
-      max-width: 560px;
-    }
-
-    .hero-404-eyebrow {
+    .blog-header-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--gray-500);
       margin-bottom: 24px;
+      display: inline-block;
     }
 
-    .hero-404-code {
-      font-family: var(--font-sans);
-      font-size: clamp(96px, 20vw, 180px);
+    .blog-header-title {
+      font-size: clamp(32px, 4.5vw, 48px);
       font-weight: 800;
-      letter-spacing: -0.06em;
-      line-height: 0.88;
-      color: var(--black);
-      margin-bottom: 8px;
-    }
-    .hero-404-code span { color: var(--red); }
-
-    .hero-404-title {
-      font-size: clamp(20px, 3vw, 28px);
-      font-weight: 700;
-      letter-spacing: -0.025em;
+      letter-spacing: -0.04em;
+      line-height: 1.08;
       color: var(--black);
       margin-bottom: 16px;
     }
+    .blog-header-title .dot { color: var(--red); }
 
-    .hero-404-text {
+    .blog-header-sub {
       font-size: 15px;
       color: var(--gray-500);
-      line-height: 1.7;
-      margin-bottom: 36px;
+      max-width: 560px;
+      line-height: 1.65;
     }
 
-    .hero-404-actions {
+    .blog-list {
       display: flex;
-      gap: 10px;
-      justify-content: center;
+      flex-direction: column;
+      padding: 0 0 80px;
+    }
+
+    .blog-post {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 32px;
+      padding: 32px 0;
+      border-top: var(--border);
+    }
+    .blog-post:first-child { border-top: none; }
+
+    .blog-post-date {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--gray-500);
+      letter-spacing: 0.02em;
+      line-height: 1.5;
+      padding-top: 2px;
+    }
+
+    .blog-post-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 8px;
+      text-decoration: none;
+      display: block;
+      transition: color 0.12s;
+    }
+    .blog-post-title:hover { color: var(--red); }
+
+    .blog-post-excerpt {
+      font-size: 14px;
+      color: var(--gray-500);
+      line-height: 1.65;
+      margin-bottom: 12px;
+    }
+
+    .blog-post-link {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--black);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      font-weight: 500;
+      transition: color 0.12s;
+    }
+    .blog-post-link:hover { color: var(--red); }
+
+    .blog-post-footer {
+      display: flex;
+      gap: 16px;
+      align-items: center;
       flex-wrap: wrap;
     }
 
-    /* ===== FOOTER ===== */
+    .blog-post-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--red);
+      cursor: pointer;
+      transition: color 0.12s;
+    }
+    .blog-post-tag:hover { color: #b02218; }
+
+    .blog-empty {
+      color: var(--gray-500);
+      text-align: center;
+      padding: 64px 0;
+      font-size: 15px;
+    }
+
+    .blog-tags-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 32px 0 80px;
+      border-top: var(--border);
+    }
+
+    .blog-tag-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      padding: 5px 12px;
+      border: var(--border);
+      border-radius: 2px;
+      text-decoration: none;
+      transition: all 0.12s;
+      cursor: pointer;
+      background: none;
+    }
+    .blog-tag-label:hover {
+      color: var(--black);
+      border-color: var(--black);
+    }
+    .blog-tag-label.active {
+      color: var(--white);
+      background: var(--black);
+      border-color: var(--black);
+    }
+
     footer {
       border-top: var(--border);
       padding: 28px 0;
       background: var(--white);
     }
     .footer-inner {
-      max-width: var(--max-w);
+      max-width: 1120px;
       margin: 0 auto;
       padding: 0 var(--pad-x);
       display: flex;
@@ -307,7 +392,6 @@
     }
     .footer-links a:hover { color: var(--black); }
 
-    /* ===== ANIMATIONS ===== */
     @keyframes heroIn {
       from { opacity: 0; transform: translateY(22px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -317,16 +401,18 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    nav                   { animation: heroIn 0.55s cubic-bezier(0.16,1,0.3,1) both; }
-    .hero-404-eyebrow     { animation: heroIn 0.65s cubic-bezier(0.16,1,0.3,1) 0.06s both; }
-    .hero-404-code        { animation: heroIn 0.80s cubic-bezier(0.16,1,0.3,1) 0.13s both; }
-    .hero-404-title       { animation: heroIn 0.65s cubic-bezier(0.16,1,0.3,1) 0.26s both; }
-    .hero-404-text        { animation: heroIn 0.65s cubic-bezier(0.16,1,0.3,1) 0.36s both; }
-    .hero-404-actions     { animation: heroIn 0.65s cubic-bezier(0.16,1,0.3,1) 0.46s both; }
+    nav           { animation: heroIn 0.55s cubic-bezier(0.16,1,0.3,1) both; }
+    .blog-header  { animation: heroIn 0.65s cubic-bezier(0.16,1,0.3,1) 0.08s both; }
+
+    .anim {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s cubic-bezier(0.16,1,0.3,1), transform 0.55s cubic-bezier(0.16,1,0.3,1);
+    }
+    .anim.in-view { opacity: 1; transform: none; }
 
     @media (prefers-reduced-motion: reduce) {
-      nav, .hero-404-eyebrow, .hero-404-code, .hero-404-title,
-      .hero-404-text, .hero-404-actions, .nav-drawer.open {
+      .anim, nav, .blog-header, .nav-drawer.open {
         animation: none !important;
         transition: none !important;
         opacity: 1 !important;
@@ -334,9 +420,11 @@
       }
     }
 
-    /* ===== RESPONSIVE ===== */
     @media (max-width: 900px) {
-      :root { --pad-x: 32px; }
+      :root { --pad-x: 32px; --max-w: 100%; }
+
+      .blog-post { grid-template-columns: 1fr; gap: 8px; }
+      .blog-post-date { font-size: 12px; }
     }
 
     @media (max-width: 640px) {
@@ -345,10 +433,8 @@
       .nav-links, .nav-cta-desktop { display: none; }
       .nav-hamburger { display: flex; }
 
-      #hero-404 { padding: 56px 0; }
-
-      .hero-404-actions { flex-direction: column; align-items: stretch; }
-      .hero-404-actions .btn { justify-content: center; }
+      .blog-post { padding: 24px 0; }
+      .blog-post-title { font-size: 18px; }
 
       .footer-inner { flex-direction: column; align-items: flex-start; gap: 14px; }
       .footer-links { flex-wrap: wrap; gap: 16px; }
@@ -357,9 +443,9 @@
   <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)}</script>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
+
 <body>
 
-  <!-- ===== NAVIGATION ===== -->
   <nav aria-label="Navigation principale">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">kAIros<span class="dot">.</span></a>
@@ -367,7 +453,7 @@
         <li><a href="index.html">Accueil</a></li>
         <li><a href="cas-dusage.html">Cas d'usage</a></li>
         <li><a href="simulateur.html">Simulateur</a></li>
-        <li><a href="blog.html">Blog</a></li>
+        <li><a href="blog.html" class="active">Blog</a></li>
         <li><a href="about.html">À propos</a></li>
       </ul>
       <a href="contact.html" class="btn nav-cta-desktop">Contactez-nous</a>
@@ -380,29 +466,29 @@
       <a href="index.html">Accueil</a>
       <a href="cas-dusage.html">Cas d'usage</a>
       <a href="simulateur.html">Simulateur</a>
-      <a href="blog.html">Blog</a>
+      <a href="blog.html" class="active">Blog</a>
       <a href="about.html">À propos</a>
       <a href="contact.html" class="btn btn-red">Contactez-nous →</a>
     </div>
   </nav>
 
-  <!-- ===== HERO 404 ===== -->
-  <section id="hero-404" aria-label="Page non trouvée">
-    <div class="container hero-404-inner">
-      <div class="hero-404-eyebrow">
-        <span class="label">Erreur 404</span>
+  <header class="blog-header">
+    <div class="container">
+      <span class="blog-header-eyebrow">Blog</span>
+      <h1 class="blog-header-title">Notes sur l'IA pour les TPE/PME<span class="dot">.</span></h1>
+      <p class="blog-header-sub">Automatisation, productivité, transformation digitale — des ressources concrètes, testées et mesurées, pour passer à l'action à votre rythme.</p>
+    </div>
+  </header>
+
+  <section id="blog" aria-label="Liste des articles">
+    <div class="container">
+      <div id="posts-container">
+        <p class="blog-empty">Chargement des articles…</p>
       </div>
-      <h1 class="hero-404-code">4<span>0</span>4</h1>
-      <p class="hero-404-title">Page non trouvée<span class="dot">.</span></p>
-      <p class="hero-404-text">Le kairos que vous cherchiez s'est envolé.<br>Cette page n'existe pas ou a été déplacée.</p>
-      <div class="hero-404-actions">
-        <a href="index.html" class="btn btn-red">Retour à l'accueil →</a>
-        <a href="contact.html" class="btn btn-outline">Nous contacter</a>
-      </div>
+      <div class="blog-tags-bar" id="tags-bar"></div>
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
   <footer>
     <div class="footer-inner">
       <a href="index.html" class="footer-logo">kAIros<span class="dot">.</span></a>
@@ -419,7 +505,6 @@
   </footer>
 
   <script>
-    /* ===== NAV SCROLL ===== */
     (function () {
       const nav = document.querySelector('nav');
       window.addEventListener('scroll', () => {
@@ -427,7 +512,6 @@
       }, { passive: true });
     })();
 
-    /* ===== HAMBURGER ===== */
     (function () {
       const btn    = document.getElementById('nav-toggle');
       const drawer = document.getElementById('nav-drawer');
@@ -439,19 +523,107 @@
         btn.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
       }
-      function open() {
+      function openMenu() {
         drawer.classList.add('open');
         btn.classList.add('open');
         btn.setAttribute('aria-expanded', 'true');
         document.body.style.overflow = 'hidden';
       }
 
-      btn.addEventListener('click', () => drawer.classList.contains('open') ? close() : open());
+      btn.addEventListener('click', () => drawer.classList.contains('open') ? close() : openMenu());
       drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
       const closeBtn = document.getElementById('nav-drawer-close');
       if (closeBtn) closeBtn.addEventListener('click', close);
       document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
     })();
+
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in-view');
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+
+      document.querySelectorAll('.blog-post').forEach(el => { el.classList.add('anim'); obs.observe(el); });
+    })();
+  </script>
+
+  <script>
+    window.__SANITY_CONFIG__ = {
+      projectId: 'deh20epq',
+      dataset: 'production',
+    }
+  </script>
+  <script src="js/sanity.js"></script>
+  <script>
+    (function () {
+      var container = document.getElementById('posts-container')
+      var tagsBar = document.getElementById('tags-bar')
+      if (!container) return
+
+      var allPosts = []
+      var activeTag = null
+
+      function render() {
+        var filtered = activeTag
+          ? allPosts.filter(function (p) { return (p.tags || []).indexOf(activeTag) !== -1 })
+          : allPosts
+
+        window.kairosSanity.renderPosts(container, filtered)
+
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          var obs = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) { e.target.classList.add('in-view'); obs.unobserve(e.target); }
+            })
+          }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' })
+          container.querySelectorAll('.blog-post').forEach(function (el) {
+            el.classList.add('anim')
+            obs.observe(el)
+          })
+        }
+      }
+
+      function buildTags(posts) {
+        if (!tagsBar) return
+        var tagSet = {}
+        for (var i = 0; i < posts.length; i++) {
+          var tags = posts[i].tags || []
+          for (var j = 0; j < tags.length; j++) { tagSet[tags[j]] = true }
+        }
+        var tagList = Object.keys(tagSet).sort()
+        if (tagList.length < 2) { tagsBar.style.display = 'none'; return }
+
+        var html = ''
+        html += '<button class="blog-tag-label' + (activeTag === null ? ' active' : '') + '" data-tag="">Tous</button>'
+        for (var k = 0; k < tagList.length; k++) {
+          html += '<button class="blog-tag-label' + (activeTag === tagList[k] ? ' active' : '') + '" data-tag="' + tagList[k] + '">' + tagList[k] + '</button>'
+        }
+        tagsBar.innerHTML = html
+
+        tagsBar.addEventListener('click', function (e) {
+          var btn = e.target.closest('.blog-tag-label')
+          if (!btn) return
+          activeTag = btn.getAttribute('data-tag') || null
+          tagsBar.querySelectorAll('.blog-tag-label').forEach(function (b) { b.classList.toggle('active', b === btn) })
+          render()
+        })
+      }
+
+      window.kairosSanity.fetchPosts().then(function (posts) {
+        allPosts = posts
+        buildTags(posts)
+        render()
+      }).catch(function (err) {
+        console.error('Sanity fetch failed:', err)
+        container.innerHTML = '<p class="blog-empty">Impossible de charger les articles. Réessayez plus tard.</p>'
+      })
+    })()
   </script>
 
 </body>

@@ -62,6 +62,8 @@ Configurez votre `.env` à partir de `.env.example`.
 ├── cas-dusage.html         # Cas d'usage (statique + dynamique Sanity)
 ├── simulateur.html         # Simulateur de ROI IA
 ├── contact.html            # Contact — formulaire → Sanity + image-4
+├── blog.html               # Blog — liste d'articles (inspiré d'agentcommunity.org/blog)
+├── article.html            # Article individuel (slug en query param, inspiré d'agentcommunity.org/blog/aid-v2)
 ├── 404.html                # Page d'erreur personnalisée
 │
 ├── images/                 # Images du site
@@ -84,7 +86,8 @@ Configurez votre `.env` à partir de `.env.example`.
 │   └── schemas/
 │       ├── index.js
 │       ├── useCaseCategory.js    # Schéma : catégorie de cas d'usage
-│       └── contactSubmission.js  # Schéma : soumissions formulaire
+│       ├── contactSubmission.js  # Schéma : soumissions formulaire
+│       └── post.js               # Schéma : articles de blog
 │
 ├── package.json
 ├── package-lock.json
@@ -100,12 +103,12 @@ Configurez votre `.env` à partir de `.env.example`.
 - [x] **MVP** — Landing page statique
 - [x] **v2** — about.html, simulateur ROI, cas-dusage.html, rebranding kAIros., design system, déploiement
 - [x] **v2.1** — Page 404, animations unifiées, navigation simplifiée (4 liens)
+- [x] **v3.5 — Blog** — Schéma Sanity `post`, page blog.html, navigation à 5 liens
 - [x] **v3 — Sanity CMS** — Intégration Sanity, schéma useCaseCategory, chargement dynamique
 - [x] **v3.1 — Images** — Hero + méthode + contact visuels, responsive background mobile
 - [x] **v3.2 — Formulaire de contact** — Page contact dédiée, Vercel Function, schéma contactSubmission
 - [x] **v3.3 — Studio en ligne** — Déploiement Sanity Studio sur kairos-ia.sanity.studio
 - [x] **v3.4 — Vercel Analytics** — Scripts Analytics injectés dans toutes les pages HTML
-- [ ] **Blog** — Schéma Sanity `post` + page blog dédiée
 - [ ] **Témoignages clients** — Section témoignages dynamiques via Sanity
 - [ ] **Services dédiés** — Pages services individuelles
 - [ ] **Contenu rédactionnel** — 3 articles de blog, cas d'usage métier détaillés

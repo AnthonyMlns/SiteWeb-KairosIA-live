@@ -59,6 +59,121 @@ window.kairosSanity = (function () {
     container.innerHTML = html
   }
 
+  function fetchPosts() {
+    var query = '*[_type == "post"] | order(publishedAt desc) { title, slug, publishedAt, excerpt, image, tags, readingTime, seoDescription }'
+    var url = 'https://' + projectId + '.apicdn.sanity.io/' + version + '/data/query/' + dataset + '?query=' + encodeURIComponent(query)
+
+    return fetch(url).then(function (res) {
+      if (!res.ok) throw new Error('Sanity fetch failed: ' + res.status)
+      return res.json()
+    }).then(function (json) {
+      return json.result || []
+    })
+  }
+
+  function renderPosts(container, posts) {
+    if (!container) return
+
+    if (!posts || posts.length === 0) {
+      container.innerHTML = '<p class="blog-empty">Aucun article publié pour le moment. Revenez bientôt !</p>'
+      return
+    }
+
+    var html = '<div class="blog-list">'
+    for (var i = 0; i < posts.length; i++) {
+      var p = posts[i]
+      var date = p.publishedAt ? new Date(p.publishedAt).toLocaleDateString('fr-CA') : ''
+      var tags = p.tags || []
+      var slug = (p.slug && p.slug.current) ? p.slug.current : ''
+      var excerpt = p.excerpt || ''
+      if (excerpt.length > 200) excerpt = excerpt.slice(0, 197) + '…'
+
+      html += '<article class="blog-post">'
+      html += '<div class="blog-post-date">' + esc(date) + '</div>'
+      html += '<div>'
+      html += '<a href="article.html?slug=' + encodeURIComponent(slug) + '" class="blog-post-title">' + esc(p.title) + '</a>'
+      html += '<p class="blog-post-excerpt">' + esc(excerpt) + '</p>'
+      html += '<div class="blog-post-footer">'
+      for (var t = 0; t < tags.length; t++) {
+        html += '<span class="blog-post-tag" data-tag="' + esc(tags[t]) + '">' + esc(tags[t]) + '</span>'
+      }
+      html += '<a href="article.html?slug=' + encodeURIComponent(slug) + '" class="blog-post-link">Lire l\'article →</a>'
+      html += '</div></div></article>'
+    }
+    html += '</div>'
+    container.innerHTML = html
+  }
+
+  function fetchPostBySlug(slug) {
+    var query = '*[_type == "post" && slug.current == $slug][0]'
+    var url = 'https://' + projectId + '.apicdn.sanity.io/' + version + '/data/query/' + dataset + '?query=' + encodeURIComponent(query) + '&$slug=' + encodeURIComponent('"' + slug + '"')
+
+    return fetch(url).then(function (res) {
+      if (!res.ok) throw new Error('Sanity fetch failed: ' + res.status)
+      return res.json()
+    }).then(function (json) {
+      return json.result || null
+    })
+  }
+
+  function renderPostBody(container, post) {
+    if (!container) return
+
+    if (!post) {
+      container.innerHTML = '<p style="color:var(--gray-500);text-align:center;padding:64px 0;">Article introuvable.</p>'
+      return
+    }
+
+    var date = post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('fr-CA') : ''
+    var tags = (post.tags || []).map(function (t) { return '<span class="article-tag">' + esc(t) + '</span>' }).join('')
+    var readingTime = post.readingTime ? post.readingTime + ' min de lecture' : ''
+    var bodyHtml = ''
+    var headings = []
+
+    if (post.body) {
+      for (var i = 0; i < post.body.length; i++) {
+        var block = post.body[i]
+        if (block._type === 'block') {
+          var text = block.children.map(function (c) { return c.text || '' }).join('')
+          if (!text) continue
+
+          var style = block.style || 'normal'
+
+          if (style === 'h2' || style === 'h3') {
+            var anchorId = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+            headings.push({ level: style, id: anchorId, text: text })
+            if (style === 'h2') {
+              bodyHtml += '<h2 class="article-h2" id="' + anchorId + '">§ ' + esc(text) + '</h2>'
+            } else {
+              bodyHtml += '<h3 class="article-h3" id="' + anchorId + '">' + esc(text) + '</h3>'
+            }
+          } else {
+            switch (style) {
+              case 'h1': bodyHtml += '<h1 class="article-h1">' + esc(text) + '</h1>'; break
+              case 'blockquote': bodyHtml += '<blockquote class="article-blockquote">' + esc(text) + '</blockquote>'; break
+              case 'code': bodyHtml += '<pre class="article-code"><code>' + esc(text) + '</code></pre>'; break
+              default: bodyHtml += '<p class="article-p">' + esc(text) + '</p>'
+            }
+          }
+        }
+      }
+    }
+
+    var metaHtml = '<div class="article-meta">' +
+      (date ? '<time class="article-date">' + date + '</time>' : '') +
+      (readingTime ? '<span class="article-reading">' + readingTime + '</span>' : '') +
+      (tags ? '<div class="article-tags">' + tags + '</div>' : '') +
+      '</div>'
+
+    var headerHtml = metaHtml +
+      '<h1 class="article-title">' + esc(post.title) + '</h1>' +
+      (post.excerpt ? '<p class="article-excerpt">' + esc(post.excerpt) + '</p>' : '')
+
+    container.innerHTML = headerHtml + '<div class="article-body">' + bodyHtml + '</div>'
+
+    return headings
+  }
+
   function esc(str) {
     if (!str) return ''
     var div = document.createElement('div')
@@ -69,5 +184,9 @@ window.kairosSanity = (function () {
   return {
     fetchUseCases: fetchUseCases,
     renderUseCases: renderUseCases,
+    fetchPosts: fetchPosts,
+    renderPosts: renderPosts,
+    fetchPostBySlug: fetchPostBySlug,
+    renderPostBody: renderPostBody,
   }
 })()
