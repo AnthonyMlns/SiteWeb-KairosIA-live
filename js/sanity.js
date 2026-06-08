@@ -133,6 +133,10 @@ window.kairosSanity = (function () {
     if (post.body) {
       for (var i = 0; i < post.body.length; i++) {
         var block = post.body[i]
+        if (block._type === 'table') {
+          bodyHtml += renderTable(block)
+          continue
+        }
         if (block._type === 'block') {
           var text = block.children.map(function (c) { return c.text || '' }).join('')
           if (!text) continue
@@ -172,6 +176,24 @@ window.kairosSanity = (function () {
     container.innerHTML = headerHtml + '<div class="article-body">' + bodyHtml + '</div>'
 
     return headings
+  }
+
+  function renderTable(tableBlock) {
+    var rows = tableBlock.rows || []
+    if (rows.length === 0) return ''
+
+    var html = '<div class="article-table-wrapper"><table class="article-table">'
+    for (var r = 0; r < rows.length; r++) {
+      var cells = rows[r].cells || []
+      var tag = r === 0 ? 'th' : 'td'
+      html += '<tr>'
+      for (var c = 0; c < cells.length; c++) {
+        html += '<' + tag + '>' + esc(cells[c]) + '</' + tag + '>'
+      }
+      html += '</tr>'
+    }
+    html += '</table></div>'
+    return html
   }
 
   function esc(str) {

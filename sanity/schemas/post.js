@@ -35,7 +35,41 @@ export default {
       name: 'body',
       title: 'Corps de l\'article',
       type: 'array',
-      of: [{type: 'block'}],
+      of: [
+        {type: 'block'},
+        {
+          name: 'table',
+          title: 'Tableau',
+          type: 'object',
+          fields: [
+            {
+              name: 'rows',
+              title: 'Lignes',
+              type: 'array',
+              of: [
+                {
+                  type: 'object',
+                  name: 'row',
+                  title: 'Ligne',
+                  fields: [
+                    {
+                      name: 'cells',
+                      title: 'Cellules',
+                      type: 'array',
+                      of: [{type: 'string'}],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+          preview: {
+            prepare() {
+              return {title: 'Tableau'}
+            },
+          },
+        },
+      ],
     },
     {
       name: 'image',
