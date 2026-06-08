@@ -131,36 +131,49 @@ window.kairosSanity = (function () {
     var headings = []
 
     if (post.body) {
+      var inList = false
       for (var i = 0; i < post.body.length; i++) {
         var block = post.body[i]
         if (block._type === 'table') {
+          if (inList) { bodyHtml += '</ul>'; inList = false }
           bodyHtml += renderTable(block)
           continue
         }
         if (block._type === 'block') {
-          var text = block.children.map(function (c) { return c.text || '' }).join('')
-          if (!text) continue
-
           var style = block.style || 'normal'
+          var innerHtml = renderChildren(block.children || [], block.markDefs || [])
+          if (!innerHtml) continue
 
           if (style === 'h2' || style === 'h3') {
+            if (inList) { bodyHtml += '</ul>'; inList = false }
+            var text = (block.children || []).map(function (c) { return c.text || '' }).join('')
             var anchorId = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
             headings.push({ level: style, id: anchorId, text: text })
-            if (style === 'h2') {
-              bodyHtml += '<h2 class="article-h2" id="' + anchorId + '">§ ' + esc(text) + '</h2>'
-            } else {
-              bodyHtml += '<h3 class="article-h3" id="' + anchorId + '">' + esc(text) + '</h3>'
+            bodyHtml += style === 'h2'
+              ? '<h2 class="article-h2" id="' + anchorId + '">§ ' + innerHtml + '</h2>'
+              : '<h3 class="article-h3" id="' + anchorId + '">' + innerHtml + '</h3>'
+          } else if (style === 'h1') {
+            if (inList) { bodyHtml += '</ul>'; inList = false }
+            bodyHtml += '<h1 class="article-h1">' + innerHtml + '</h1>'
+          } else if (style === 'blockquote') {
+            if (inList) { bodyHtml += '</ul>'; inList = false }
+            bodyHtml += '<blockquote class="article-blockquote">' + innerHtml + '</blockquote>'
+          } else if (style === 'code') {
+            if (inList) { bodyHtml += '</ul>'; inList = false }
+            bodyHtml += '<pre class="article-code"><code>' + innerHtml + '</code></pre>'
+          } else if (block.listItem === 'bullet') {
+            if (!inList) { bodyHtml += '<ul class="article-ul">'; inList = true }
+            bodyHtml += '<li>' + innerHtml + '</li>'
+            if (i === post.body.length - 1 || !post.body[i + 1] || post.body[i + 1].listItem !== 'bullet') {
+              bodyHtml += '</ul>'; inList = false
             }
           } else {
-            switch (style) {
-              case 'h1': bodyHtml += '<h1 class="article-h1">' + esc(text) + '</h1>'; break
-              case 'blockquote': bodyHtml += '<blockquote class="article-blockquote">' + esc(text) + '</blockquote>'; break
-              case 'code': bodyHtml += '<pre class="article-code"><code>' + esc(text) + '</code></pre>'; break
-              default: bodyHtml += '<p class="article-p">' + esc(text) + '</p>'
-            }
+            if (inList) { bodyHtml += '</ul>'; inList = false }
+            bodyHtml += '<p class="article-p">' + innerHtml + '</p>'
           }
         }
       }
+      if (inList) bodyHtml += '</ul>'
     }
 
     var metaHtml = '<div class="article-meta">' +
@@ -176,6 +189,32 @@ window.kairosSanity = (function () {
     container.innerHTML = headerHtml + '<div class="article-body">' + bodyHtml + '</div>'
 
     return headings
+  }
+
+  function renderChildren(children, markDefs) {
+    var html = ''
+    for (var i = 0; i < children.length; i++) {
+      var child = children[i]
+      if (!child.text) continue
+      var text = esc(child.text)
+      var marks = child.marks || []
+      for (var m = 0; m < marks.length; m++) {
+        var mark = marks[m]
+        if (mark === 'strong') { text = '<strong>' + text + '</strong>' }
+        else if (mark === 'em') { text = '<em>' + text + '</em>' }
+        else if (mark === 'code') { text = '<code>' + text + '</code>' }
+        else {
+          for (var d = 0; d < markDefs.length; d++) {
+            if (markDefs[d]._key === mark && markDefs[d]._type === 'link') {
+              text = '<a href="' + esc(markDefs[d].href) + '">' + text + '</a>'
+              break
+            }
+          }
+        }
+      }
+      html += text
+    }
+    return html
   }
 
   function renderTable(tableBlock) {
