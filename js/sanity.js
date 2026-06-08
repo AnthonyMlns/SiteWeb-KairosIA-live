@@ -105,8 +105,8 @@ window.kairosSanity = (function () {
   }
 
   function fetchPostBySlug(slug) {
-    var query = '*[_type == "post" && slug.current == $slug][0]'
-    var url = 'https://' + projectId + '.apicdn.sanity.io/' + version + '/data/query/' + dataset + '?query=' + encodeURIComponent(query) + '&$slug=' + encodeURIComponent('"' + slug + '"')
+    var query = '*[_type == "post" && slug.current == "' + slug + '"][0]'
+    var url = 'https://' + projectId + '.apicdn.sanity.io/' + version + '/data/query/' + dataset + '?query=' + encodeURIComponent(query)
 
     return fetch(url).then(function (res) {
       if (!res.ok) throw new Error('Sanity fetch failed: ' + res.status)
