@@ -103,7 +103,7 @@ Configurez votre `.env` à partir de `.env.example`.
 - [x] **MVP** — Landing page statique
 - [x] **v2** — about.html, simulateur ROI, cas-dusage.html, rebranding kAIros., design system, déploiement
 - [x] **v2.1** — Page 404, animations unifiées, navigation simplifiée (4 liens)
-- [x] **v3.5 — Blog** — Schéma Sanity `post`, page blog.html, navigation à 5 liens
+- [x] **v3.5 — Blog** — Schéma Sanity `post`, blog.html, article.html, TOC sidebar, navigation à 5 liens
 - [x] **v3 — Sanity CMS** — Intégration Sanity, schéma useCaseCategory, chargement dynamique
 - [x] **v3.1 — Images** — Hero + méthode + contact visuels, responsive background mobile
 - [x] **v3.2 — Formulaire de contact** — Page contact dédiée, Vercel Function, schéma contactSubmission
@@ -111,7 +111,7 @@ Configurez votre `.env` à partir de `.env.example`.
 - [x] **v3.4 — Vercel Analytics** — Scripts Analytics injectés dans toutes les pages HTML
 - [ ] **Témoignages clients** — Section témoignages dynamiques via Sanity
 - [ ] **Services dédiés** — Pages services individuelles
-- [ ] **Contenu rédactionnel** — 3 articles de blog, cas d'usage métier détaillés
+- [ ] **Contenu rédactionnel** — Rédiger et publier des articles depuis le Studio Sanity
 
 ## Contribuer
 
